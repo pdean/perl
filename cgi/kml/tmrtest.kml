@@ -31,6 +31,59 @@
 
 
 
+	<NetworkLink>
+            <name>TMR Road Lines</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://localhost/cgi-bin/line.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>
+
+                    schema=tmr                  &amp; 
+                    table=segs                  &amp; 
+                    index=id                    &amp;
+                    geom=geog                   &amp; 
+                    epsg=4283                   &amp;
+                    title=TMR Road Lines        &amp; 
+                    name=tstart                 &amp; 
+                    color=ff0000ff              &amp; 
+                    width=8 
+
+                </httpQuery>
+            </Link>
+	</NetworkLink>
+
+
+
+    
+	<NetworkLink>
+            <name>TMR 1km </name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://localhost/cgi-bin/point.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>
+
+                    schema=qspatial              &amp;
+                    table=state_controlled_roads_1km_marks  &amp;
+                    index=objectid               &amp;
+                    geom=shape                   &amp;
+                    epsg=4283                    &amp;
+                    title=TMR 1km                &amp;
+                    name=tdist                   &amp;
+                    scale=1.25                   &amp;
+                    icon=http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png
+
+                </httpQuery>
+            </Link>
+	</NetworkLink>
+
+
+
     </Folder>
 </kml>
 

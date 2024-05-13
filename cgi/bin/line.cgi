@@ -81,7 +81,7 @@ sub poly {
     if (exists $params->{where}) {
         $query .= " and $params->{where}";
     }   
-    $query .= " limit 5000 ";
+    $query .= " limit 50000 ";
 
     for my $row (@{$dbh->selectall_arrayref($query)}) {   
 
