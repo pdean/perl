@@ -1,0 +1,108 @@
+#!/usr/bin/env perl
+# vim:ft=perl:sts=4:sw=4:et
+
+use strict;
+use warnings;
+use v5.36;
+use DBI;
+use XML::Simple;
+#use Data::Dumper;
+use CGI qw(:standard);
+
+sub scdb {
+    my $params = shift;
+    my ($lon1,$lat1,$lon2,$lat2) = split /,/, $params->{BBOX};
+
+    my $site     = 'localhost';
+    my $host     = 'localhost';
+    #my $site     = 'droid2.local';
+    #my $host     = 'droid2.local';
+    my $dbname   = 'gis';
+    my $username = 'gis';
+    my $password = 'gis';
+
+    my $schema   = 'qspatial';
+    my $tab      = 'survey_control_data_qld';
+    my $table    = "$schema.$tab";
+    my $geom     = 'shape';
+    my $idx      = 'objectid';
+
+    my $dbh = DBI->connect(
+        "dbi:Pg:dbname=$dbname;host=$host",
+         $username, $password,
+         {AutoCommit => 0, RaiseError => 1, PrintError => 0}
+    );
+
+    my ($Doc, $Style, $Folder, $Placemark) = ([],[],[],[]);
+    push @$Doc, {
+        name => [$tab],
+        Style => $Style,
+        Folder => $Folder,
+    };
+
+    my $png = 'PMCode';
+    my $codes = "2 6 10 14 18 22 26 30 38 46 "
+               ."54 62 82 86 90 94 118 126 130 "
+	       ."134 138 142 146 150 154 158 166 "
+	       ." 174 182 190 210 214 218 222 246 254";
+
+    for my $code (split(" ", $codes)) {
+        my $file = "http://$site/pmsymbols/$png$code.png";
+        push @$Style, {
+            id => "$png$code",
+            IconStyle => [
+                {
+                    scale => ['2'],
+                    Icon => [{ href => [$file]}]
+                }
+            ]
+        }
+    }
+
+    push @$Folder, {
+        name => ['SCDB'],
+        Placemark => $Placemark,
+    };
+
+    my $query;
+    $query .= " select st_askml(st_force3dz($geom)) as kml,mrk_id,code "; 
+    $query .= " from $table where $geom && ";
+    $query .= "  st_setsrid(st_makebox2d(st_point($lon1,$lat1),st_point($lon2,$lat2)),4283) ";
+    if (exists $params->{where}) {
+        $query .= " and $params->{where}";
+    }
+    $query .= " limit 1000 ";
+
+    for my $row (@{$dbh->selectall_arrayref($query)}) {
+        my ($kml, $mark, $code) = @$row;
+        my $pdf = sprintf "SCR%06d.pdf",$mark ;
+        my $link = "http://qspatial.information.qld.gov.au/SurveyReport/$pdf";
+        my $desc = "<a href=\"$link\"> Survey Report </a>";
+        my $style = "#PMCode$code";
+        my ($type, $geom) = %{XMLin($kml, keepRoot => 1, forceArray => 1)};
+
+        push @$Placemark, {
+            name => [$mark],
+            description => [$desc],
+            styleUrl => [$style],
+            $type => $geom,
+        };
+    }
+
+    my $root = {Document => $Doc};
+    return XMLout($root, RootName => 'kml');
+}
+
+#my $bbox = "153.015,-27.445,153.035,-27.425";
+#my $where = "mrkcnd_de='GOOD' and gda2020lineage_de='Datum'";
+#my $params = { BBOX => $bbox, where => $where};
+
+my $params;
+for my $key (param()) {
+    $params->{$key} = param($key);
+} 
+
+my $kml = scdb($params) ;
+print header('application/vnd.google-earth.kml+xml');
+print $kml;
+
