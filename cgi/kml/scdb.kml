@@ -10,7 +10,7 @@
             <visibility>0</visibility>
             <description>Test</description>
             <Link>
-                <href>http://localhost/cgi-bin/scdbtest.cgi</href>
+                <href>http://localhost/cgi-bin/scdb.cgi</href>
                 <viewRefreshMode>onStop</viewRefreshMode>
                 <viewRefreshTime>1</viewRefreshTime>
                 <httpQuery>
@@ -24,7 +24,7 @@
             <visibility>0</visibility>
             <description>Test</description>
             <Link>
-                <href>http://localhost/cgi-bin/scdbtest.cgi</href>
+                <href>http://localhost/cgi-bin/scdb.cgi</href>
                 <viewRefreshMode>onStop</viewRefreshMode>
                 <viewRefreshTime>1</viewRefreshTime>
                 <httpQuery>
@@ -38,7 +38,7 @@
             <visibility>0</visibility>
             <description>Test</description>
             <Link>
-                <href>http://localhost/cgi-bin/scdbtest.cgi</href>
+                <href>http://localhost/cgi-bin/scdb.cgi</href>
                 <viewRefreshMode>onStop</viewRefreshMode>
                 <viewRefreshTime>1</viewRefreshTime>
                 <httpQuery>
