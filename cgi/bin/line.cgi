@@ -20,7 +20,6 @@ sub poly {
     my $schematable = "${schema}.${table}";
 
     my $host        = 'localhost';
-    #my $host        = 'droid2.local';
     my $dbname      = 'gis';
     my $username    = 'gis';
     my $password    = 'gis';

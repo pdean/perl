@@ -15,8 +15,6 @@ sub scdb {
 
     my $site     = 'localhost';
     my $host     = 'localhost';
-    #my $site     = 'droid2.local';
-    #my $host     = 'droid2.local';
     my $dbname   = 'gis';
     my $username = 'gis';
     my $password = 'gis';
