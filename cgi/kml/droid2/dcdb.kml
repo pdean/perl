@@ -1,0 +1,122 @@
+<kml>
+    <Folder>
+	<name>dcdb test droid2.local</name>
+	<visibility>0</visibility>
+	<open>1</open>
+	<description>just tick the boxes</description>
+    
+	<NetworkLink>
+            <name>Lots</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://droid2.local/cgi-bin/poly.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>
+
+                    schema=qspatial              &amp;
+                    table=qld_cadastre_dcdb      &amp;
+                    index=objectid               &amp;
+                    geom=o_shape                 &amp;
+                    epsg=7844                    &amp;
+                    title=dcdb 2020              &amp;
+                    name=lotplan                 &amp;
+                    altname=feat_name            &amp; 
+                    altname2=alias_name          &amp; 
+                    color=ffffffff               &amp;
+                    width=2                      &amp;
+                    where=parcel_typ ~ '^Lot'
+
+                </httpQuery>
+            </Link>
+	</NetworkLink>
+
+
+	<NetworkLink>
+            <name>Road Corridors</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://droid2.local/cgi-bin/poly.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>
+
+                    schema=qspatial             &amp; 
+                    table=qld_cadastre_dcdb     &amp; 
+                    index=objectid              &amp;
+                    geom=o_shape                &amp; 
+                    epsg=7844                    &amp;
+                    title=dcdb 2020             &amp; 
+                    name=lotplan                &amp; 
+                    altname=feat_name           &amp; 
+                    altname2=alias_name         &amp; 
+                    color=ffffffff              &amp; 
+                    width=2                     &amp; 
+                    where=parcel_typ ~ '^Road.*|^Unlinked.*'
+
+                </httpQuery>
+            </Link>
+	</NetworkLink>
+
+
+	<NetworkLink>
+            <name>Everything</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://droid2.local/cgi-bin/poly.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>
+
+                    schema=qspatial             &amp; 
+                    table=qld_cadastre_dcdb     &amp; 
+                    index=objectid              &amp;
+                    geom=o_shape                &amp; 
+                    epsg=7844                    &amp;
+                    title=dcdb 2020             &amp; 
+                    name=lotplan                &amp; 
+                    altname=feat_name           &amp; 
+                    altname2=alias_name         &amp; 
+                    color=ffffffff              &amp; 
+                    width=2 
+
+                </httpQuery>
+            </Link>
+	</NetworkLink>
+
+
+
+	<NetworkLink>
+            <name>Locality Boundaries</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://droid2.local/cgi-bin/poly.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>
+
+                    schema=qspatial             &amp; 
+                    table=locality_boundaries   &amp; 
+                    index=objectid              &amp;
+                    geom=shape                  &amp; 
+                    epsg=7844                    &amp;
+                    title=Locality              &amp; 
+                    name=locality               &amp; 
+                    altname=locality            &amp; 
+                    color=ff00afff              &amp; 
+                    width=3 
+
+                </httpQuery>
+            </Link>
+	</NetworkLink>
+
+
+
+
+    </Folder>
+</kml>
+

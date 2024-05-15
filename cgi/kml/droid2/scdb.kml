@@ -1,0 +1,51 @@
+<kml>
+    <Folder>
+	<name>scdb test droid2.local</name>
+	<visibility>0</visibility>
+	<open>1</open>
+	<description>just tick the boxes</description>
+    
+	<NetworkLink>
+            <name>All Good</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://droid2.local/cgi-bin/scdb.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>
+                    where=mrkcnd_de='GOOD'
+                </httpQuery>
+            </Link>
+	</NetworkLink>
+
+	<NetworkLink>
+            <name>GDA2020 Datum</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://droid2.local/cgi-bin/scdb.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>
+                    where=mrkcnd_de='GOOD' and gda2020lineage_de='Datum' 
+                </httpQuery>
+            </Link>
+	</NetworkLink>
+
+	<NetworkLink>
+            <name>AHD Datum</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://droid2.local/cgi-bin/scdb.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>
+                    where=mrkcnd_de='GOOD' and ahdlineage_de='Datum'
+                </httpQuery>
+            </Link>
+	</NetworkLink>
+
+    </Folder>
+</kml>
