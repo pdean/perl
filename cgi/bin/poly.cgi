@@ -77,7 +77,7 @@ sub poly {
     $query .= " select st_askml($geom) as kml, ";
     $query .= join(',', @columns) ;
     $query .= " from $schematable  where $geom && ";
-    $query .= " st_setsrid(st_makebox2d(st_point($lon1,$lat1),st_point($lon2,$lat2)),$epsg) ";
+    $query .= " st_transform(st_setsrid(st_makebox2d(st_point($lon1,$lat1),st_point($lon2,$lat2)),7844),$epsg) ";
     if (exists $params->{where}) {
         $query .= " and $params->{where}";
     }   
