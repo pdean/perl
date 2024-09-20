@@ -1,16 +1,4 @@
-set site {http://www.northgroup.com.au}
-
-array set trans [list \
-    text string\
-    character string \
-    {character varying} string\
-    date string \
-    {double precision} double \
-    numeric double \
-    integer int\
-    bytea string \
-]
-
+package require base64
 
 set icons {
 PMCode2.png
@@ -230,3 +218,10 @@ p9qPRjpNAN3nm086Tx8K71kdNDonDksQ0fYBiIhA+2VydFRihzaUSa8CgWY3kNUTay6BLRszQ8rb
 zg/uJmwFDwFsBl6w2B/T+a1zwIPYjU8GTwMIhB277S6wINmrmOgLruPSF1HkD+tUlsCeExmN0hLo
 b8KsxvI9UO6Cqi2vwHKAF0dEuBnX9mwjAAAAAElFTkSuQmCC}
 }
+
+foreach {name data} $icons {
+        set out [open $name wb]
+        puts -nonewline $out [::base64::decode $data]
+        close $out
+    }
+
