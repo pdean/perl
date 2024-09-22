@@ -1,0 +1,33 @@
+<kml>
+    <Folder>
+	<name>TESTING</name>
+	<visibility>0</visibility>
+	<open>1</open>
+	<description>just tick the boxes</description>
+    
+	<NetworkLink>
+            <name>Test httpQuery</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://arch1701.local/cgi-bin/testing.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>
+
+                    schema=qspatial             &amp;
+                    table=qld_cadastre_dcdb     &amp;
+                    geom=o_shape                &amp;
+                    index=objectid              &amp;
+                    title=dcdb 2020             &amp;
+                    name=lotplan                &amp;
+                    altname=segpar              &amp; 
+                    color=ffffffff              &amp;
+                    width=1 
+
+                </httpQuery>
+            </Link>
+	</NetworkLink>
+
+</Folder>
+</kml>

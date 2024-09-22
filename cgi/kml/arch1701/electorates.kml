@@ -1,0 +1,88 @@
+<kml>
+    <Folder>
+	<name>electoral boundaries arch1701.local</name>
+	<visibility>0</visibility>
+	<open>1</open>
+	<description>just tick the boxes</description>
+    
+	<NetworkLink>
+            <name>state</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://arch1701.local/cgi-bin/poly.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>
+
+                    schema=qspatial                        &amp;
+                    table=state_electoral_boundaries_2017  &amp;
+                    index=objectid                         &amp;
+                    geom=shape                             &amp;
+                    epsg=4283                              &amp;
+                    title=state                            &amp;
+                    name=name                              &amp;
+                    color=ff9314ff                         &amp;
+                    width=5                                &amp;
+
+                </httpQuery>
+            </Link>
+	</NetworkLink>
+
+
+
+	<NetworkLink>
+            <name>federal</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://arch1701.local/cgi-bin/poly.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>
+
+                    schema=aec              &amp;
+                    table=e_augec_region    &amp;
+                    index=gid               &amp;
+                    geom=geom               &amp;
+                    epsg=4283               &amp;
+                    title=federal           &amp;
+                    name=elect_div          &amp;
+                    color=ff008eff          &amp;
+                    width=6                 &amp;
+
+                </httpQuery>
+            </Link>
+	</NetworkLink>
+
+
+
+	<NetworkLink>
+            <name>BCC</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://arch1701.local/cgi-bin/poly.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>
+
+                    schema=bcc              &amp;
+                    table=ward_boundaries   &amp;
+                    index=gid               &amp;
+                    geom=geom               &amp;
+                    epsg=28356              &amp;
+                    title=BCC               &amp;
+                    name=ward               &amp;
+                    color=ff2fffad          &amp;
+                    width=4                 &amp;
+
+                </httpQuery>
+            </Link>
+	</NetworkLink>
+
+
+
+    </Folder>
+</kml>
+
