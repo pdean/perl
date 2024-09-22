@@ -9,12 +9,13 @@ use XML::Simple;
 use CGI          qw(:standard);
 use experimental qw(builtin);
 use builtin      qw(trim);
+use Net::Domain  qw(hostfqdn);
 
 sub scdb {
     my $params = shift;
     my ( $lon1, $lat1, $lon2, $lat2 ) = split /,/, $params->{BBOX};
 
-    my $site     = 'arch1701.local';
+    my $site     = hostfqdn();
     my $host     = 'localhost';
     my $dbname   = 'gis';
     my $username = 'gis';
@@ -40,7 +41,7 @@ sub scdb {
     my $png = 'PMCode';
     my @codes
         = qw(  2   6  10  14  18  22  26  30  38  46  54  62  82  86  90  94 118 126
-             130 134 138 142 146 150 154 158 166 174 182 190 210 214 218 222 246 254);
+        130 134 138 142 146 150 154 158 166 174 182 190 210 214 218 222 246 254);
 
     for my $code (@codes) {
         my $file = "http://$site/pmsymbols/$png$code.png";
@@ -90,17 +91,11 @@ sub scdb {
     return XMLout( $root, RootName => 'kml' );
 }
 
-#my $bbox = "153.015,-27.445,153.035,-27.425";
-#my $where = "mrkcnd_de='GOOD' and gda2020lineage_de='Datum'";
-#my $params = { BBOX => $bbox, where => $where};
-
 my $params;
 for my $key ( param() ) {
-    my $val = param($key);
-    $params->{ trim($key) } = trim($val);
+    $params->{ trim($key) } = trim( param($key) );
 }
 
-my $kml = scdb($params);
 print header('application/vnd.google-earth.kml+xml');
-print $kml;
+print scdb($params);
 
