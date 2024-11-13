@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}
+
+\begin{document}
+
+\section{Coordinate Transformations}
+
+\begin{enumerate}
+\item\ Plane coordinate transformation\\
+\\
+\begin{tabular}{|l|}
+\hline
+$ X = a_{0} + a_{1}x - b_{1}y $ \\ 
+$ Y = b_{0} + b_{1}x + a_{1}y $ \\ 
+\hline
+\end{tabular} 
+\\
+\\ 
+\\
+$
+\begin{array}{ll}
+\overline{X} = X_{2} - X_{1} & 
+\overline{x} = x_{2} - x_{1}\\
+\overline{Y} = Y_{2} - Y_{1} & 
+\overline{y} = y_{2} - y_{1}\\
+a_{1} = \frac{\overline{x}\overline{X} + \overline{y}\overline{Y}}
+             {\overline{x}^{2} + \overline{y}^{2}} &
+b_{1} = \frac{\overline{x}\overline{Y} - \overline{y}\overline{X}}
+             {\overline{x}^{2} + \overline{y}^{2}}\\          
+a_{0} = X_{1} - a_{1}x_{1} + b_{1}y_{1} &
+b_{0} = Y_{1} - b_{1}x_{1} - a_{1}y_{1}\\
+\end{array}
+\\
+$
+
+\item\ Plane similarity transformation with overdetermination\\
+\\
+\begin{tabular}{|l|}
+\hline
+$ X' = a_{0} + a_{1}x - b_{1}y $ \\
+$ Y' = b_{0} + b_{1}x + a_{1}y $ \\
+\hline
+\end{tabular} 
+\\
+\\
+i = 1 \ldots\ n \\
+\\ 
+$ 
+\begin{array}{llll}
+X_{s} = \frac{[X_{i}]}{n} &
+Y_{s} = \frac{[Y_{i}]}{n} &
+x_{s} = \frac{[x_{i}]}{n} &
+y_{s} = \frac{[y_{i}]}{n} \\
+\overline{X_{i}} = X_{i} - X_{s} &
+\overline{Y_{i}} = Y_{i} - Y_{s} &
+\overline{x_{i}} = x_{i} - x_{s} &
+\overline{y_{i}} = y_{i} - y_{s} \\
+\end{array}
+\\
+\\
+\begin{array}{ll}
+a_{1} = \frac{[\overline{x}_{i}\overline{X}_{i}] + 
+              [\overline{y}_{i}\overline{Y}_{i}]}
+             {[\overline{x}_{i}^{2} + 
+              \overline{y}_{i}^{2}]} &
+b_{1} = \frac{[\overline{x}_{i}\overline{Y}_{i}] - 
+              [\overline{y}_{i}\overline{X}_{i}]}
+             {[\overline{x}_{i}^{2} + 
+              \overline{y}_{i}^{2}]}\\       
+a_{0} = X_{s} - a_{1}x_{s} + b_{1}y_{s} &
+b_{0} = Y_{s} - b_{1}x_{s} - a_{1}y_{s}\\
+\\
+v_{xi} = X_{i} - X_{i}' &
+v_{yi} = Y_{i} - Y_{i}'\\
+\end{array}
+\\
+m_{0} = \sqrt{\frac{[v_{xi}^{2}+v_{yi}^{2}]}{2n-4}} = m_{x} = m_{y}\\
+m_{p} = m_{0}\sqrt{2}\\
+\\
+$
+
+\end{enumerate}
+
+\end{document}
