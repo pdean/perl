@@ -1,0 +1,52 @@
+<kml>
+    <Folder>
+	<name>electoral boundaries spiro.local</name>
+	<visibility>0</visibility>
+	<open>1</open>
+	<description>just tick the boxes</description>
+    
+	<NetworkLink>
+            <name>state</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://spiro.local/cgi-bin/kml.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>type=state</httpQuery>
+            </Link>
+	</NetworkLink>
+
+
+
+	<NetworkLink>
+            <name>federal</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://spiro.local/cgi-bin/kml.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>type=federal</httpQuery>
+            </Link>
+	</NetworkLink>
+
+
+
+	<NetworkLink>
+            <name>BCC</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://spiro.local/cgi-bin/kml.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>type=BCC</httpQuery>
+            </Link>
+	</NetworkLink>
+
+
+
+    </Folder>
+</kml>
+
