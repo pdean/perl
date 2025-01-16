@@ -7,14 +7,20 @@ use DBI;
 use XML::LibXML;
 use CGI qw(:standard);
 
-my $configfile = './kmldata.pl';
-do $configfile;
-our %configs;
+#my $configfile = './kmldata.pl';
+#do $configfile;
+#our %configs;
+
+use YAML::Tiny 'LoadFile';
+my $file = './kml.yaml';
+my $config =  LoadFile($file);
+
 
 my @box = split /,/, param('BBOX');
 my ( $lon1, $lat1, $lon2, $lat2 ) = @box;
 my $type   = param('type');
-my $params = $configs{$type};
+#my $params = $configs{$type};
+my $params = $config->{$type};
 
 my $schema      = $params->{schema};
 my $table       = $params->{table};

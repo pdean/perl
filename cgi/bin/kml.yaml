@@ -1,0 +1,87 @@
+everything:
+  altname: feat_name
+  altname2: alias_name
+  color: ffffffff
+  epsg: '7844'
+  geom: o_shape
+  index: objectid
+  name: lotplan
+  schema: qspatial
+  table: qld_cadastre_dcdb
+  title: dcdb_2020
+  width: '2'
+
+locality:
+  altname: locality
+  color: ff00afff
+  epsg: '7844'
+  geom: shape
+  index: objectid
+  name: locality
+  schema: qspatial
+  table: locality_boundaries
+  title: Locality
+  width: '3'
+
+lots:
+  altname: feat_name
+  altname2: alias_name
+  color: ffffffff
+  epsg: 7844
+  geom: o_shape
+  index: objectid
+  name: lotplan
+  schema: qspatial
+  table: qld_cadastre_dcdb
+  title: 'dcdb 2020'
+  where: "parcel_typ ~ '^Lot'"
+  width: '2'
+
+roadcorridors:
+  altname: feat_name
+  altname2: alias_name
+  color: ffffffff
+  epsg: '7844'
+  geom: o_shape
+  index: objectid
+  name: lotplan
+  schema: qspatial
+  table: qld_cadastre_dcdb
+  title: dcdb_2020
+  where: "parcel_typ ~ '^Road.*|^Unlinked.*'"
+  width: '2'
+
+BCC:
+  schema: bcc
+  table: ward_boundaries
+  index: gid
+  geom: geom
+  epsg: 28356
+  title: BCC
+  name: ward
+  color: ff2fffad
+  width: 4
+
+federal:
+  schema: aec
+  table: e_augec_region
+  index: gid
+  geom: geom
+  epsg: 4283
+  title: federal
+  name: elect_div
+  color: ff008eff
+  width: 6
+
+state:
+  schema: qspatial
+  table: state_electoral_boundaries_2017
+  index: objectid
+  geom: shape
+  epsg: 4283
+  title: state
+  name: name
+  color: ff9314ff
+  width: 5
+
+
