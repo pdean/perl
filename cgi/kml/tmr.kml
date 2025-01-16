@@ -1,6 +1,6 @@
 <kml>
     <Folder>
-	<name>tmr arch1701.local</name>
+	<name>tmr spiro.local</name>
 	<visibility>0</visibility>
 	<open>1</open>
 	<description>just tick the boxes</description>
@@ -10,22 +10,10 @@
             <visibility>0</visibility>
             <description>Test</description>
             <Link>
-                <href>http://arch1701.local/cgi-bin/point.cgi</href>
+                <href>http://spiro.local/cgi-bin/kml.cgi</href>
                 <viewRefreshMode>onStop</viewRefreshMode>
                 <viewRefreshTime>1</viewRefreshTime>
-                <httpQuery>
-
-                    schema=tmr                   &amp;
-                    table=pts                    &amp;
-                    index=id                     &amp;
-                    geom=geog                    &amp;
-                    epsg=4283                    &amp;
-                    title=TMR Roadloc            &amp;
-                    name=tdist                   &amp;
-                    scale=1.25                   &amp;
-                    icon=http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png
-
-                </httpQuery>
+                <httpQuery>type=tmrpoints</httpQuery>
             </Link>
 	</NetworkLink>
 
@@ -36,22 +24,10 @@
             <visibility>0</visibility>
             <description>Test</description>
             <Link>
-                <href>http://arch1701.local/cgi-bin/line.cgi</href>
+                <href>http://spiro.local/cgi-bin/kml.cgi</href>
                 <viewRefreshMode>onStop</viewRefreshMode>
                 <viewRefreshTime>1</viewRefreshTime>
-                <httpQuery>
-
-                    schema=tmr                  &amp; 
-                    table=segs                  &amp; 
-                    index=id                    &amp;
-                    geom=geog                   &amp; 
-                    epsg=4283                   &amp;
-                    title=TMR Road Lines        &amp; 
-                    name=tstart                 &amp; 
-                    color=ff0000ff              &amp; 
-                    width=8 
-
-                </httpQuery>
+                <httpQuery>type=tmrlines</httpQuery>
             </Link>
 	</NetworkLink>
 
@@ -63,22 +39,10 @@
             <visibility>0</visibility>
             <description>Test</description>
             <Link>
-                <href>http://arch1701.local/cgi-bin/point.cgi</href>
+                <href>http://spiro.local/cgi-bin/kml.cgi</href>
                 <viewRefreshMode>onStop</viewRefreshMode>
                 <viewRefreshTime>1</viewRefreshTime>
-                <httpQuery>
-
-                    schema=qspatial              &amp;
-                    table=state_controlled_roads_1km_marks  &amp;
-                    index=objectid               &amp;
-                    geom=shape                   &amp;
-                    epsg=4283                    &amp;
-                    title=TMR 1km                &amp;
-                    name=tdist                   &amp;
-                    scale=1.25                   &amp;
-                    icon=http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png
-
-                </httpQuery>
+                <httpQuery>type=tmr1km</httpQuery>
             </Link>
 	</NetworkLink>
 
