@@ -6,33 +6,23 @@ use v5.36;
 use DBI;
 use XML::LibXML;
 use CGI qw(:standard);
-
-#my $configfile = './kmldata.pl';
-#do $configfile;
-#our %configs;
-
 use YAML::Tiny 'LoadFile';
-my $file = './kml.yaml';
-my $config =  LoadFile($file);
-
-
-my @box = split /,/, param('BBOX');
+my $file   = './kml.yaml';
+my $config = LoadFile($file);
+my @box    = split /,/, param('BBOX');
 my ( $lon1, $lat1, $lon2, $lat2 ) = @box;
-my $type   = param('type');
-#my $params = $configs{$type};
-my $params = $config->{$type};
-
+my $type        = param('type');
+my $params      = $config->{$type};
 my $schema      = $params->{schema};
 my $table       = $params->{table};
 my $idx         = $params->{index};
 my $geom        = $params->{geom};
 my $epsg        = $params->{epsg};
 my $schematable = "${schema}.${table}";
-
-my $host     = 'localhost';
-my $dbname   = 'gis';
-my $username = 'gis';
-my $password = 'gis';
+my $host        = 'localhost';
+my $dbname      = 'gis';
+my $username    = 'gis';
+my $password    = 'gis';
 
 my $dbh = DBI->connect( "dbi:Pg:dbname=$dbname;host=$host",
     $username, $password,
