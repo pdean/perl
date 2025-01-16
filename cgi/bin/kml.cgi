@@ -124,7 +124,7 @@ sub tokml {
     my $iconstyle = element( $dom, $style     => 'IconStyle' );
     my $icon      = element( $dom, $iconstyle => 'Icon' );
     text( $dom, $iconstyle, scale => $params->{scale} );
-    text( $dom, $icon,      href  => $params->{href} );
+    text( $dom, $icon,      href  => $params->{icon} );
 
     my $linestyle = element( $dom, $style => 'LineStyle' );
     text( $dom, $linestyle, width => $params->{width} );
