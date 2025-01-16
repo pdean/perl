@@ -1,0 +1,45 @@
+<kml>
+    <Folder>
+	<name>scdb spiro.local</name>
+	<visibility>0</visibility>
+	<open>1</open>
+	<description>just tick the boxes</description>
+    
+	<NetworkLink>
+            <name>All Good</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://spiro.local/cgi-bin/scdb.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>type=good</httpQuery>
+            </Link>
+	</NetworkLink>
+
+	<NetworkLink>
+            <name>GDA2020 Datum</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://spiro.local/cgi-bin/scdb.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>type=gda2020datum</httpQuery>
+            </Link>
+	</NetworkLink>
+
+	<NetworkLink>
+            <name>AHD Datum</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://spiro.local/cgi-bin/scdb.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>type=ahddatum</httpQuery>
+            </Link>
+	</NetworkLink>
+
+    </Folder>
+</kml>

@@ -1,0 +1,73 @@
+<kml>
+    <Folder>
+	<name>dcdb spiro.local</name>
+	<visibility>0</visibility>
+	<open>1</open>
+	<description>just tick the boxes</description>
+    
+	<NetworkLink>
+            <name>Lots</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://spiro.local/cgi-bin/kml.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+
+                <httpQuery>type=lots</httpQuery>
+
+            </Link>
+	</NetworkLink>
+
+
+	<NetworkLink>
+            <name>Road Corridors</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://spiro.local/cgi-bin/kml.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+
+                <httpQuery>type=roadcorridors</httpQuery>
+
+            </Link>
+	</NetworkLink>
+
+
+	<NetworkLink>
+            <name>Everything</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://spiro.local/cgi-bin/kml.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+
+                <httpQuery>type=everything</httpQuery>
+
+            </Link>
+	</NetworkLink>
+
+
+
+	<NetworkLink>
+            <name>Locality Boundaries</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://spiro.local/cgi-bin/kml.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+
+                <httpQuery>type=locality</httpQuery>
+
+            </Link>
+	</NetworkLink>
+
+
+
+
+    </Folder>
+</kml>
+

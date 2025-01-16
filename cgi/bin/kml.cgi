@@ -23,7 +23,7 @@ my $geom        = $params->{geom};
 my $epsg        = $params->{epsg};
 my $schematable = "${schema}.${table}";
 
-my $host     = 'spiro.local';
+my $host     = 'localhost';
 my $dbname   = 'gis';
 my $username = 'gis';
 my $password = 'gis';
