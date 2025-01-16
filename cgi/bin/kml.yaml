@@ -84,4 +84,38 @@ state:
   color: ff9314ff
   width: 5
 
+tmrpoints:
+  schema: tmr
+  table: pts
+  index: id
+  geom: geog
+  epsg: 4283
+  title: TMR Roadloc
+  name: tdist
+  scale: 1.25
+  icon: http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png
+
+tmrlines:
+  schema: tmr
+  table: segs
+  index: id
+  geom: geog
+  epsg: 4283
+  title: TMR Road Lines
+  name: tstart
+  color: ff0000ff
+  width: 8
+
+tmr1km:
+  schema: qspatial
+  table: state_controlled_roads_1km_marks
+  index: objectid
+  geom: shape
+  epsg: 4283
+  title: TMR 1km
+  name: tdist
+  scale: 1.25
+  icon: http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png
+
+
 
