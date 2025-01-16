@@ -105,6 +105,7 @@ tmrlines:
   name: tstart
   color: ff0000ff
   width: 8
+  limit: 50000
 
 tmr1km:
   schema: qspatial

@@ -41,17 +41,22 @@ for my $row ( @{ $dbh->selectall_arrayref($colquery) } ) {
     next if ( $column eq $geom );
     push @columns, $column;
 }
+my $cols = join( ',', @columns );
 
-my $cols  = join( ',', @columns );
 my $where = ' ';
 if ( exists $params->{where} ) {
     $where = " and $params->{where}";
 }
 
+my $limit = 5000;
+if ( exists $params->{limit} ) {
+    $limit = $params->{limit};
+}
+
 my $query = <<"END";
 select st_askml($geom) as kml, $cols from $schematable  where $geom && 
     st_transform(st_setsrid(st_makebox2d(st_point($lon1,$lat1),st_point($lon2,$lat2)),7844),$epsg) 
-    $where limit 5000
+    $where limit $limit
 END
 
 my $rows = $dbh->selectall_arrayref($query);
