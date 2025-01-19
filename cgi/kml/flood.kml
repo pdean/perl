@@ -1,0 +1,23 @@
+<kml>
+    <Folder>
+	<name>Floods  spiro.local</name>
+	<visibility>0</visibility>
+	<open>1</open>
+	<description>just tick the boxes</description>
+
+   	<NetworkLink>
+            <name>1974 flood</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://spiro.local/cgi-bin/kml.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>type=flood1974</httpQuery>
+            </Link>
+	</NetworkLink>
+
+
+    </Folder>
+</kml>
+
