@@ -23,6 +23,19 @@ locality:
   title: Locality
   width: '3'
 
+
+lga:
+  color: ff88afff
+  epsg: '4283'
+  geom: shape
+  index: objectid
+  name: lga
+  schema: qspatial
+  table: local_government_areas
+  title: Locality
+  width: '4'
+
+
 lots:
   altname: feat_name
   altname2: alias_name
@@ -118,8 +131,8 @@ tmr1km:
   scale: 1.25
   icon: http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png
 
-flood1974:
-  title: '1974 Floods'
+'1974':
+  title: '1974'
   schema: qspatial
   table: flood_extent___brisbane_and_ipswich___1974
   index: objectid
@@ -129,6 +142,19 @@ flood1974:
   color: ff1314ff
   width: 3
   fill: 1
+
+
+'1974outline':
+  title: '1974 outline'
+  schema: qspatial
+  table: flood_extent___brisbane_and_ipswich___1974
+  index: objectid
+  name: featuretype
+  geom: shape
+  epsg: 4283
+  color: ff1314ff
+  width: 3
+  fill: 0
 
 
 flood2011:

@@ -1,4 +1,5 @@
 #!/usr/bin/env perl
+#!c:/strawberry/perl/bin/perl
 # vim:ft=perl:sts=4:sw=4:et
 # kml.cgi
 
@@ -11,13 +12,20 @@ my $file   = './kml.yaml';
 my $config = LoadFile($file);
 my @box    = split /,/, param('BBOX');
 my ( $lon1, $lat1, $lon2, $lat2 ) = @box;
-my $type        = param('type');
-my $params      = $config->{$type};
-my $schema      = $params->{schema};
-my $table       = $params->{table};
-my $idx         = $params->{index};
-my $geom        = $params->{geom};
-my $epsg        = $params->{epsg};
+my $type   = param('type');
+my $params = $config->{$type};
+
+my $schema = $params->{schema};
+my $table  = $params->{table};
+my $idx    = $params->{index};
+my $geom   = $params->{geom};
+my $epsg   = $params->{epsg};
+my $limit  = $params->{limit} // 5000;
+my $where  = ' ';
+if ( exists $params->{where} ) {
+    $where = " and $params->{where}";
+}
+
 my $schematable = "${schema}.${table}";
 my $host        = 'localhost';
 my $dbname      = 'gis';
@@ -42,16 +50,6 @@ for my $row ( @{ $dbh->selectall_arrayref($colquery) } ) {
     push @columns, $column;
 }
 my $cols = join( ',', @columns );
-
-my $where = ' ';
-if ( exists $params->{where} ) {
-    $where = " and $params->{where}";
-}
-
-my $limit = 5000;
-if ( exists $params->{limit} ) {
-    $limit = $params->{limit};
-}
 
 my $query = <<"END";
 select st_askml($geom) as kml, $cols from $schematable  where $geom && 
@@ -114,21 +112,31 @@ sub tokml {
 
         $placemark->appendWellBalancedChunk($kml);
     }
+
+    my $scale = $params->{scale} // '1.25';
+    my $href  = $params->{icon}
+        // "http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png";
+    my $width   = $params->{width}   // '2';
+    my $color   = $params->{color}   // 'ffffffff';
+    my $fill    = $params->{fill}    // '0';
+    my $outline = $params->{outline} // '1';
+
     my $style = attribute( $dom, $document, 'Style', id => 'NORMAL' );
 
     my $iconstyle = element( $dom, $style     => 'IconStyle' );
     my $icon      = element( $dom, $iconstyle => 'Icon' );
-    text( $dom, $iconstyle, scale => $params->{scale} );
-    text( $dom, $icon,      href  => $params->{icon} );
+    text( $dom, $iconstyle, scale => $scale );
+    text( $dom, $icon,      href  => $href );
+    text( $dom, $iconstyle, color => $color );
 
     my $linestyle = element( $dom, $style => 'LineStyle' );
-    text( $dom, $linestyle, width => $params->{width} );
-    text( $dom, $linestyle, color => $params->{color} );
+    text( $dom, $linestyle, width => $width );
+    text( $dom, $linestyle, color => $color );
 
     my $polystyle = element( $dom, $style => 'PolyStyle' );
-    text( $dom, $polystyle, fill    => $params->{fill} // '0' );
-    text( $dom, $polystyle, outline => '1' );
-    text( $dom, $polystyle, color => $params->{color} );
+    text( $dom, $polystyle, fill    => $fill );
+    text( $dom, $polystyle, outline => $outline );
+    text( $dom, $polystyle, color   => $color );
 
     return $dom->toString(1);
 }
