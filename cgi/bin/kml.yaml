@@ -32,7 +32,7 @@ lga:
   name: lga
   schema: qspatial
   table: local_government_areas
-  title: Locality
+  title: LGA
   width: '4'
 
 
