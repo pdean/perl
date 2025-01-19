@@ -118,5 +118,40 @@ tmr1km:
   scale: 1.25
   icon: http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png
 
+flood1974:
+  title: '1974 Floods'
+  schema: qspatial
+  table: flood_extent___brisbane_and_ipswich___1974
+  index: objectid
+  name: featuretype
+  geom: shape
+  epsg: 4283
+  color: ff1314ff
+  width: 3
+  fill: 1
 
+
+flood2011:
+  title: '2011 Floods'
+  schema: qspatial
+  table: flood_extent___queensland___jan_2011
+  index: objectid
+  name: featuretype
+  geom: shape
+  epsg: 4283
+  color: ff1394ff
+  width: 3
+  fill: 1
+
+flood2022:
+  title: '2022 Floods'
+  schema: bcc
+  table: brisbane_river_and_creek_floods___feb_2022
+  index: gid
+  name: objectid
+  geom: geom
+  epsg: 28356
+  color: ff139444
+  width: 3
+  fill: 1
 

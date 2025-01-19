@@ -126,9 +126,9 @@ sub tokml {
     text( $dom, $linestyle, color => $params->{color} );
 
     my $polystyle = element( $dom, $style => 'PolyStyle' );
-    text( $dom, $polystyle, fill    => '0' );
+    text( $dom, $polystyle, fill    => $params->{fill} // '0' );
     text( $dom, $polystyle, outline => '1' );
-    text( $dom, $polystyle, color   => $params->{color} );
+    text( $dom, $polystyle, color => $params->{color} );
 
     return $dom->toString(1);
 }
