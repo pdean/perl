@@ -6,14 +6,27 @@
 	<description>just tick the boxes</description>
 
    	<NetworkLink>
-            <name>1974 flood</name>
+            <name>1974</name>
             <visibility>0</visibility>
             <description>Test</description>
             <Link>
                 <href>http://spiro.local/cgi-bin/kml.cgi</href>
                 <viewRefreshMode>onStop</viewRefreshMode>
                 <viewRefreshTime>1</viewRefreshTime>
-                <httpQuery>type=flood1974</httpQuery>
+                <httpQuery>type=1974</httpQuery>
+            </Link>
+	</NetworkLink>
+
+
+   	<NetworkLink>
+            <name>1974 outline</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://spiro.local/cgi-bin/kml.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>type=1974outline</httpQuery>
             </Link>
 	</NetworkLink>
 
