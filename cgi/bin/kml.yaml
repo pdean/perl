@@ -53,7 +53,7 @@ lots:
 roadcorridors:
   altname: feat_name
   altname2: alias_name
-  color: ffffffff
+  color: ff2fffad
   epsg: '7844'
   geom: o_shape
   index: objectid
@@ -139,7 +139,7 @@ tmr1km:
   name: featuretype
   geom: shape
   epsg: 4283
-  color: ff1314ff
+  color: 881314ff
   width: 3
   fill: 1
 

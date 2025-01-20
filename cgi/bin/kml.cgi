@@ -8,6 +8,7 @@ use DBI;
 use XML::LibXML;
 use CGI qw(:standard);
 use YAML::Tiny 'LoadFile';
+
 my $file   = './kml.yaml';
 my $config = LoadFile($file);
 my @box    = split /,/, param('BBOX');
@@ -26,7 +27,7 @@ if ( exists $params->{where} ) {
     $where = " and $params->{where}";
 }
 
-my $schematable = "${schema}.${table}";
+my $schematable = "$schema.$table";
 my $host        = 'localhost';
 my $dbname      = 'gis';
 my $username    = 'gis';
@@ -36,10 +37,10 @@ my $dbh = DBI->connect( "dbi:Pg:dbname=$dbname;host=$host",
     $username, $password,
     { AutoCommit => 0, RaiseError => 1, PrintError => 0 } );
 
-my $colquery = <<"END";
+my $colquery = <<END;
 select column_name from information_schema.columns 
-  where table_name='$table' and table_schema='$schema' 
-  order by ordinal_position
+where table_name='$table' and table_schema='$schema' 
+order by ordinal_position
 END
 
 my @columns;
@@ -51,10 +52,10 @@ for my $row ( @{ $dbh->selectall_arrayref($colquery) } ) {
 }
 my $cols = join( ',', @columns );
 
-my $query = <<"END";
+my $query = <<END;
 select st_askml($geom) as kml, $cols from $schematable  where $geom && 
-    st_transform(st_setsrid(st_makebox2d(st_point($lon1,$lat1),st_point($lon2,$lat2)),7844),$epsg) 
-    $where limit $limit
+st_transform(st_setsrid(st_makebox2d(st_point($lon1,$lat1),st_point($lon2,$lat2)),7844),$epsg) 
+$where limit $limit
 END
 
 my $rows = $dbh->selectall_arrayref($query);
@@ -66,6 +67,8 @@ print $kml;
 ##############################
 # subs
 
+use subs qw/element attribute text/;
+
 sub tokml {
     my ( $columns, $rows, $params, $subtitle ) = @_;
 
@@ -74,11 +77,11 @@ sub tokml {
     $kml->setAttribute( 'xmlns', 'http://earth.google.com/kml/2.1' );
     $dom->setDocumentElement($kml);
 
-    my $document = element( $dom, $kml => 'Document' );
-    text( $dom, $document, name => $params->{title} );
+    my $document = element $dom, $kml => 'Document';
+    text $dom, $document, name => $params->{title};
 
-    my $folder = element( $dom, $document => 'Folder' );
-    text( $dom, $folder, name => $subtitle );
+    my $folder = element $dom, $document => 'Folder';
+    text $dom, $folder, name => $subtitle;
 
     for my $row ( @{$rows} ) {
 
@@ -100,14 +103,14 @@ sub tokml {
             $name = "$values{$params->{altname2}}";
         }
 
-        my $placemark = element( $dom, $folder => 'Placemark' );
-        text( $dom, $placemark, name     => $name );
-        text( $dom, $placemark, styleUrl => '#NORMAL' );
+        my $placemark = element $dom, $folder => 'Placemark';
+        text $dom, $placemark, name     => $name;
+        text $dom, $placemark, styleUrl => '#NORMAL';
 
-        my $extended = element( $dom, $placemark => 'ExtendedData' );
+        my $extended = element $dom, $placemark => 'ExtendedData';
         for my $column ( @{$columns} ) {
-            my $data = attribute( $dom, $extended, 'Data', name => $column );
-            text( $dom, $data, value => $values{$column} );
+            my $data = attribute $dom, $extended, Data => ( name => $column );
+            text $dom, $data, value => $values{$column};
         }
 
         $placemark->appendWellBalancedChunk($kml);
@@ -121,22 +124,22 @@ sub tokml {
     my $fill    = $params->{fill}    // '0';
     my $outline = $params->{outline} // '1';
 
-    my $style = attribute( $dom, $document, 'Style', id => 'NORMAL' );
+    my $style = attribute $dom, $document, Style => ( id => 'NORMAL' );
 
-    my $iconstyle = element( $dom, $style     => 'IconStyle' );
-    my $icon      = element( $dom, $iconstyle => 'Icon' );
-    text( $dom, $iconstyle, scale => $scale );
-    text( $dom, $icon,      href  => $href );
-    text( $dom, $iconstyle, color => $color );
+    my $iconstyle = element $dom, $style     => 'IconStyle';
+    my $icon      = element $dom, $iconstyle => 'Icon';
+    text $dom, $iconstyle, scale => $scale;
+    text $dom, $icon,      href  => $href;
+    text $dom, $iconstyle, color => $color;
 
-    my $linestyle = element( $dom, $style => 'LineStyle' );
-    text( $dom, $linestyle, width => $width );
-    text( $dom, $linestyle, color => $color );
+    my $linestyle = element $dom, $style => 'LineStyle';
+    text $dom, $linestyle, width => $width;
+    text $dom, $linestyle, color => $color;
 
-    my $polystyle = element( $dom, $style => 'PolyStyle' );
-    text( $dom, $polystyle, fill    => $fill );
-    text( $dom, $polystyle, outline => $outline );
-    text( $dom, $polystyle, color   => $color );
+    my $polystyle = element $dom, $style => 'PolyStyle';
+    text $dom, $polystyle, fill    => $fill;
+    text $dom, $polystyle, outline => $outline;
+    text $dom, $polystyle, color   => $color;
 
     return $dom->toString(1);
 }
