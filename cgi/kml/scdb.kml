@@ -41,5 +41,17 @@
             </Link>
 	</NetworkLink>
 
+	<NetworkLink>
+            <name>GDA and AHD Datum</name>
+            <visibility>0</visibility>
+            <description>Test</description>
+            <Link>
+                <href>http://spiro.local/cgi-bin/scdbv2.cgi</href>
+                <viewRefreshMode>onStop</viewRefreshMode>
+                <viewRefreshTime>1</viewRefreshTime>
+                <httpQuery>type=bothdatum</httpQuery>
+            </Link>
+	</NetworkLink>
+
     </Folder>
 </kml>
