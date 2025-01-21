@@ -9,3 +9,7 @@ $configs{gda2020datum}
 $configs{ahddatum}
     = { where => q(mrkcnd_de='GOOD' and ahdlineage_de='Datum') };
 
+
+$configs{bothdatum}
+    = { where => q(mrkcnd_de='GOOD' and gda2020lineage_de='Datum' and ahdlineage_de='Datum') };
+
