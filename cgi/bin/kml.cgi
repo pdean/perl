@@ -43,8 +43,9 @@ where table_name='$table' and table_schema='$schema'
 order by ordinal_position
 END
 
-my @columns;
-for my $row ( @{ $dbh->selectall_arrayref($colquery) } ) {
+my ( $rows, @columns );
+$rows = $dbh->selectall_arrayref($colquery);
+for my $row (@$rows) {
     my ($column) = @$row;
     next if ( $column eq $idx );
     next if ( $column eq $geom );
@@ -58,8 +59,8 @@ st_transform(st_setsrid(st_makebox2d(st_point($lon1,$lat1),st_point($lon2,$lat2)
 $where limit $limit
 END
 
-my $rows = $dbh->selectall_arrayref($query);
-my $kml  = tokml( \@columns, $rows, $params, $schematable );
+$rows = $dbh->selectall_arrayref($query);
+my $kml = tokml( \@columns, $rows, $params, $schematable );
 print header('application/vnd.google-earth.kml+xml');
 print $kml;
 
@@ -83,11 +84,11 @@ sub tokml {
     my $folder = element $dom, $document => 'Folder';
     text $dom, $folder, name => $subtitle;
 
-    for my $row ( @{$rows} ) {
+    for my $row (@$rows) {
 
         my $kml = shift @$row;
         my %values;
-        for my $column ( @{$columns} ) {
+        for my $column (@$columns) {
             my $val = shift @$row // 'NULL';
             $values{$column} = $val;
         }
@@ -108,7 +109,7 @@ sub tokml {
         text $dom, $placemark, styleUrl => '#NORMAL';
 
         my $extended = element $dom, $placemark => 'ExtendedData';
-        for my $column ( @{$columns} ) {
+        for my $column (@$columns) {
             my $data = attribute $dom, $extended, Data => ( name => $column );
             text $dom, $data, value => $values{$column};
         }
