@@ -1,0 +1,9 @@
+#!/usr/bin/perl
+use v5.38;
+use File::BOM ':all';
+my $file = glob '*.12da';
+#say $file;
+my $enc  = open_bom my $fh, $file, ':utf8';
+#say $enc;
+while (<$fh>) { print; }
+
