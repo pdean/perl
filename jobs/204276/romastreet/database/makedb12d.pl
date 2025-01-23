@@ -13,11 +13,16 @@ $project->read12da( glob '*.12da' );
 open my $fh, '>', 'romast.kml';
 say $fh $project->tokml('roma st');
 
+
+__END__
+
 my $schema   = 'romastreet';
 my $dbname   = 'gis';
 my $host     = 'spiro.local';
 my $username = 'gis';
 my $password = 'gis';
+
+
 
 $project->makedb(
     {   schema   => $schema,
