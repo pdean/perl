@@ -127,39 +127,39 @@ sub tokml {
 
     foreach my $s ( @{ $self->strings } ) {
         my $folder = element $dom, $document => 'Folder';
-        text $dom, $folder, name => $s->name . ' ' . $s->seg ;
+        text $dom, $folder, name => $s->name . ' ' . $s->seg;
 
         my @line;
 
         for my $p ( @{ $s->points } ) {
-            my $name = sprintf "%.0f", $p->ch ; 
+            my $name = sprintf "%.0f", $p->ch;
             my $desc
                 = sprintf( "%.3f", $p->ch ) . '<br>'
                 . $s->name . '<br>'
                 . $s->seg . '<br>'
                 . sprintf( "%.3f", $p->x ) . '<br>'
                 . sprintf( "%.3f", $p->y ) . '<br>';
-            my $coord       = $p->lam . ',' . $p->phi;
+            my $coord = $p->lam . ',' . $p->phi;
             push @line, $coord;
 
             my $placemark = element $dom, $folder => 'Placemark';
-            text $dom, $placemark, name => $name;
+            text $dom, $placemark, name        => $name;
             text $dom, $placemark, description => $desc;
-            text $dom, $placemark, styleUrl => '#info';
+            text $dom, $placemark, styleUrl    => '#info';
             my $point = element $dom, $placemark => 'Point';
-            text $dom, $point, coordinates =>$coord;
+            text $dom, $point, coordinates => $coord;
         }
 
         my $placemark = element $dom, $folder => 'Placemark';
         text $dom, $placemark, styleUrl => '#info';
         my $linestring = element $dom, $placemark => 'LineString';
-        text $dom, $linestring, coordinates => join " ", @line ;
+        text $dom, $linestring, coordinates => join " ", @line;
     }
 
     my $style = attribute $dom, $document, Style => ( id => 'info' );
 
-    my $iconstyle = element $dom, $style => 'IconStyle';
-    my $icon = element $dom, $iconstyle => 'Icon';
+    my $iconstyle = element $dom, $style     => 'IconStyle';
+    my $icon      = element $dom, $iconstyle => 'Icon';
     my $png
         = "http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png";
     text $dom, $icon, href => $png;
