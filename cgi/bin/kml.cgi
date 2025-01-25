@@ -78,11 +78,11 @@ sub tokml {
     $kml->setAttribute( 'xmlns', 'http://earth.google.com/kml/2.1' );
     $dom->setDocumentElement($kml);
 
-    my $document = element $dom, $kml => 'Document';
-    text $dom, $document, name => $params->{title};
+    my $document = element $kml => 'Document';
+    text $document, name => $params->{title};
 
-    my $folder = element $dom, $document => 'Folder';
-    text $dom, $folder, name => $subtitle;
+    my $folder = element $document => 'Folder';
+    text $folder, name => $subtitle;
 
     for my $row (@$rows) {
 
@@ -104,14 +104,14 @@ sub tokml {
             $name = "$values{$params->{altname2}}";
         }
 
-        my $placemark = element $dom, $folder => 'Placemark';
-        text $dom, $placemark, name     => $name;
-        text $dom, $placemark, styleUrl => '#NORMAL';
+        my $placemark = element $folder => 'Placemark';
+        text $placemark, name     => $name;
+        text $placemark, styleUrl => '#NORMAL';
 
-        my $extended = element $dom, $placemark => 'ExtendedData';
+        my $extended = element $placemark => 'ExtendedData';
         for my $column (@$columns) {
-            my $data = attribute $dom, $extended, Data => ( name => $column );
-            text $dom, $data, value => $values{$column};
+            my $data = attribute $extended, Data => ( name => $column );
+            text $data, value => $values{$column};
         }
 
         $placemark->appendWellBalancedChunk($kml);
@@ -125,45 +125,46 @@ sub tokml {
     my $fill    = $params->{fill}    // '0';
     my $outline = $params->{outline} // '1';
 
-    my $style = attribute $dom, $document, Style => ( id => 'NORMAL' );
+    my $style = attribute $document, Style => ( id => 'NORMAL' );
 
-    my $iconstyle = element $dom, $style     => 'IconStyle';
-    my $icon      = element $dom, $iconstyle => 'Icon';
-    text $dom, $iconstyle, scale => $scale;
-    text $dom, $icon,      href  => $href;
-    text $dom, $iconstyle, color => $color;
+    my $iconstyle = element $style     => 'IconStyle';
+    my $icon      = element $iconstyle => 'Icon';
+    text $iconstyle, scale => $scale;
+    text $icon,      href  => $href;
+    text $iconstyle, color => $color;
 
-    my $linestyle = element $dom, $style => 'LineStyle';
-    text $dom, $linestyle, width => $width;
-    text $dom, $linestyle, color => $color;
+    my $linestyle = element $style => 'LineStyle';
+    text $linestyle, width => $width;
+    text $linestyle, color => $color;
 
-    my $polystyle = element $dom, $style => 'PolyStyle';
-    text $dom, $polystyle, fill    => $fill;
-    text $dom, $polystyle, outline => $outline;
-    text $dom, $polystyle, color   => $color;
+    my $polystyle = element $style => 'PolyStyle';
+    text $polystyle, fill    => $fill;
+    text $polystyle, outline => $outline;
+    text $polystyle, color   => $color;
 
     return $dom->toString(1);
 }
 
-sub text {
-    my ( $dom, $parent, $name, $text ) = @_;
-    my $node = $dom->createElement($name);
-    $node->appendTextNode($text);
+sub element {
+    my ( $parent, $name ) = @_;
+    my $node = $parent->ownerDocument->createElement($name);
     $parent->appendChild($node);
     return $node;
 }
 
-sub element {
-    my ( $dom, $parent, $name ) = @_;
-    my $node = $dom->createElement($name);
+sub text {
+    my ( $parent, $name, $text ) = @_;
+    my $node = $parent->ownerDocument->createElement($name);
     $parent->appendChild($node);
+    $node->appendTextNode($text);
     return $node;
 }
 
 sub attribute {
-    my ( $dom, $parent, $name, $id, $value ) = @_;
-    my $node = $dom->createElement($name);
+    my ( $parent, $name, $id, $value ) = @_;
+    my $node = $parent->ownerDocument->createElement($name);
     $parent->appendChild($node);
     $node->setAttribute( $id => $value );
     return $node;
 }
+
