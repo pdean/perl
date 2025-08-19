@@ -5,8 +5,7 @@ use v5.36;
 use aliased 'Geo::Proj::CCT';
 use POSIX qw(copysign);
 
-my $cs1 = CCT->crs2crs( "EPSG:7856", "EPSG:7844" );
-$cs1 = $cs1->norm;
+my $cs1 = CCT->crs2crs( "EPSG:7856", "EPSG:7844" )->norm;
 
 my $S
     = " +proj=pipeline +zone=56 +south +ellps=GRS80"
