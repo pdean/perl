@@ -7,12 +7,11 @@ use POSIX qw(copysign);
 
 my $mga = CCT->crs2crs( "EPSG:7856", "EPSG:7844" )->norm;
 
-my $S
-    = " +proj=pipeline +zone=56 +south +ellps=GRS80"
-    . " +step +inv +proj=utm"
-    . " +step +proj=vgridshift +grids=au_ga_AGQG_20201120.tif"
-    . " +step +proj=utm";
-my $avws = CCT->create($S);
+my $avws
+    = CCT->create( "+proj=pipeline +zone=56 +south +ellps=GRS80"
+        . " +step +inv +proj=utm"
+        . " +step +proj=vgridshift +grids=au_ga_AGQG_20201120.tif"
+        . " +step +proj=utm" );
 
 my $lat1 = minutes( -23, 27 );
 my $lat2 = minutes( -22, 30 );
