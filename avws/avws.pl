@@ -5,18 +5,24 @@ use v5.36;
 use aliased 'Geo::Proj::CCT';
 use POSIX qw(copysign);
 
-my $mga = CCT->crs2crs( "EPSG:7856", "EPSG:7844" )->norm;
+# EDITS
+
+my $zone = 56;
+my $lat1 = degmin( -23, 27 );
+my $lat2 = degmin( -22, 30 );
+my $lon1 = degmin( 149, 54 );
+my $lon2 = degmin( 150, 51 );
+my $tiff = "au_ga_AGQG_20201120.tif";
+
+# no more edits
+
+my $mga = CCT->crs2crs( "EPSG:78" . $zone, "EPSG:7844" )->norm;
 
 my $avws
-    = CCT->create( "+proj=pipeline +zone=56 +south +ellps=GRS80"
+    = CCT->create( "+proj=pipeline +zone=$zone +south +ellps=GRS80"
         . " +step +inv +proj=utm"
-        . " +step +proj=vgridshift +grids=au_ga_AGQG_20201120.tif"
+        . " +step +proj=vgridshift +grids=$tiff"
         . " +step +proj=utm" );
-
-my $lat1 = minutes( -23, 27 );
-my $lat2 = minutes( -22, 30 );
-my $lon1 = minutes( 149, 54 );
-my $lon2 = minutes( 150, 51 );
 
 for ( my $lat = $lat1; $lat <= $lat2; $lat++ ) {
     for ( my $lon = $lon1; $lon <= $lon2; $lon++ ) {
@@ -26,7 +32,7 @@ for ( my $lat = $lat1; $lat <= $lat2; $lat++ ) {
     }
 }
 
-sub minutes {
+sub degmin {
     my ( $deg, $min ) = @_;
     $min = copysign( $min, $deg );
     return $deg * 60 + $min;
