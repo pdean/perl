@@ -37,7 +37,6 @@ for ( my $lat = $lat1; $lat <= $lat2; $lat++ ) {
 
 sub degmin {
     my ( $deg, $min ) = @_;
-    $min = copysign( $min, $deg );
-    return $deg * 60 + $min;
+    return $deg * 60 + copysign( $min, $deg );
 }
 
