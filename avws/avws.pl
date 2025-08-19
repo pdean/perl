@@ -8,10 +8,11 @@ use POSIX qw(copysign);
 my $cs1 = CCT->crs2crs( "EPSG:7856", "EPSG:7844" );
 $cs1 = $cs1->norm;
 
-my $S = " +proj=pipeline  +zone=56 +south +ellps=GRS80";
-$S .= " +step +inv +proj=utm";
-$S .= " +step +proj=vgridshift +grids=au_ga_AGQG_20201120.tif";
-$S .= " +step +proj=utm";
+my $S
+    = " +proj=pipeline +zone=56 +south +ellps=GRS80"
+    . " +step +inv +proj=utm"
+    . " +step +proj=vgridshift +grids=au_ga_AGQG_20201120.tif"
+    . " +step +proj=utm";
 my $cs2 = CCT->create($S);
 
 my $lat1 = minutes( -23, 27 );
