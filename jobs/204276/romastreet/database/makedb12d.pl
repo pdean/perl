@@ -14,11 +14,10 @@ open my $fh, '>', 'romast.kml';
 say $fh $project->tokml('roma st');
 
 
-__END__
 
 my $schema   = 'romastreet';
 my $dbname   = 'gis';
-my $host     = 'spiro.local';
+my $host     = 'localhost';
 my $username = 'gis';
 my $password = 'gis';
 
@@ -32,3 +31,4 @@ $project->makedb(
         password => $password
     }
 );
+__END__
