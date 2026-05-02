@@ -4,7 +4,7 @@
 my $dirtxt   = 'mp4dir.txt';
 
 my $logfile  = "log.csv";
-my $exiftool = 'exiftool64';
+my $exiftool = 'exiftool';
 
 use v5.36;
 use experimental qw(builtin);
@@ -22,7 +22,10 @@ my $dir = trim <$fh>;
 close $fh;
 
 say "processing directory $dir", "\n";
-foreach my $file ( glob catfile $dir, '*.mp4' ) {
+my $pattern = catfile $dir, '*.mp4';
+say "globbing $pattern";
+foreach my $file ( glob qq("$pattern") ) {
+    say "full path = $file";
     my ( $filename, $path, $suffix ) = fileparse( $file, '\.mp4' );
     my @log;
     push @log, $filename . '.mp4';
